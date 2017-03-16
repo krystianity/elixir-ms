@@ -14,6 +14,7 @@ defmodule ExTest do
         name: ExTest.Supervisor
     ]
 
+    IO.puts "Application ready."
     Supervisor.start_link(children, opts)
   end
 
