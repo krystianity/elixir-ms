@@ -15,7 +15,7 @@ defmodule ExTest.Mixfile do
   def application do
     [
         mod: {ExTest, []},
-        applications: [:httpoison, :cowboy, :plug]
+        applications: [:prometheus_ex, :httpoison, :cowboy, :plug]
     ]
   end
 
@@ -26,7 +26,8 @@ defmodule ExTest.Mixfile do
         {:redix, "~> 0.5"}, #redis
         {:cowboy, "~> 1.1"}, # http server
         {:plug, "~> 1.3"}, # http server wrapper
-        {:bunt, "~> 0.1.0"} # cli colors
+        {:bunt, "~> 0.1.0"}, # cli colors
+        {:prometheus_ex, "~> 1.1.0"} # metrics
     ]
   end
 

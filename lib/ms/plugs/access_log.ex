@@ -26,13 +26,25 @@ defmodule MSBase.AccessLog do
     end)
   end
 
+  def get_iso_time do
+    DateTime.to_iso8601 DateTime.utc_now()
+  end
+
+  def read_correlation_id(conn) do
+    {_, value} = List.keyfind(conn.req_headers,"correlation-id",0)
+    value
+  end
+
   def get_json_log(conn, status, response_time) do
     {:ok, string} = Poison.encode(%MSBase.AccessLogMsg{
         status: status,
         response_time: response_time,
         service: "ex_test",
         request_method: conn.method,
-        uri: "/" <> Enum.join(conn.path_info, "/")
+        uri: "/" <> Enum.join(conn.path_info, "/"),
+        query_string: conn.query_string,
+        "@timestamp": get_iso_time(),
+        "correlation-id": read_correlation_id(conn)
     })
     string
   end

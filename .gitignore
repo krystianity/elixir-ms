@@ -2,3 +2,4 @@
 _build
 deps
 elixir-test.iml
+*.iml
