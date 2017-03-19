@@ -1,5 +1,9 @@
 use Mix.Config
 
-    config :logger,
-        level: :info,
-        format: "$time $metadata[$level] $levelpad$message\n"
+    config :ExTest,
+
+        port: 8080,
+
+        log_level: "info",
+        service_name: "ex-test",
+        json_enabled: false

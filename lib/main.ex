@@ -1,21 +1,26 @@
 defmodule ExTest do
     use Application
 
+    alias MSBase.Log
+
   def start(_type, _args) do
+    #IO.puts "starting supervisor"
+    link_res = ExTest.Supervisor.start_link
+    #IO.puts "preparing side effects"
+    side_effects()
+    link_res
+  end
 
-    children = [
-        Plug.Adapters.Cowboy.child_spec(:http, ExTest.Router, [], [
-            port: 8080
-        ])
-    ]
+  def side_effects do
 
-    opts = [
-        strategy: :one_for_one,
-        name: ExTest.Supervisor
-    ]
+    log_level = Application.get_env(:ExTest, :log_level)
+    service_name = Application.get_env(:ExTest, :service_name)
+    json_enabled = Application.get_env(:ExTest, :json_enabled)
 
-    IO.puts "Application ready."
-    Supervisor.start_link(children, opts)
+    Log.init(log_level, service_name, json_enabled)
+    Log.info "Application ready."
+
+    {:ok}
   end
 
 end

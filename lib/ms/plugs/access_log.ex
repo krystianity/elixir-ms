@@ -1,4 +1,4 @@
-defmodule ExTest.Logger do
+defmodule MSBase.AccessLog do
 
   alias Plug.Conn
   @behaviour Plug
@@ -27,19 +27,19 @@ defmodule ExTest.Logger do
   end
 
   def get_json_log(conn, status, response_time) do
-    {:ok, string} = Poison.encode(%ExTest.LogMsg{
+    {:ok, string} = Poison.encode(%MSBase.AccessLogMsg{
         status: status,
         response_time: response_time,
         service: "ex_test",
-        method: conn.method,
-        path: "/" <> Enum.join(conn.path_info, "/")
+        request_method: conn.method,
+        uri: "/" <> Enum.join(conn.path_info, "/")
     })
     string
   end
 
   def write_log(string) do
-    IO.puts(string)
-    :ok
+    IO.puts string
+    {:ok}
   end
 
   defp formatted_diff(diff) when diff > 1000, do: [diff |> div(1000) |> Integer.to_string, "ms"]

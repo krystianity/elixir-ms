@@ -15,7 +15,7 @@ defmodule ExTest.Mixfile do
   def application do
     [
         mod: {ExTest, []},
-        applications: [:logger, :httpoison, :cowboy, :plug]
+        applications: [:httpoison, :cowboy, :plug]
     ]
   end
 
@@ -25,7 +25,8 @@ defmodule ExTest.Mixfile do
         {:httpoison, "~> 0.11"}, #http client
         {:redix, "~> 0.5"}, #redis
         {:cowboy, "~> 1.1"}, # http server
-        {:plug, "~> 1.3"} # http server wrapper
+        {:plug, "~> 1.3"}, # http server wrapper
+        {:bunt, "~> 0.1.0"} # cli colors
     ]
   end
 

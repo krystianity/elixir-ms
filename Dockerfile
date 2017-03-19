@@ -15,4 +15,4 @@ RUN mix deps.get --force && \
     mix clean --force && \
     mix compile --force
 
-CMD ./_drun.sh
+CMD ./tools/_drun.sh

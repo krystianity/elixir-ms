@@ -3,12 +3,16 @@ defmodule ExTest.Router do
 
   # plug pipeline
 
-  plug ExTest.Logger
+  plug MSBase.AccessLog
   plug :match
   plug Plug.Parsers, parsers: [:json],
                      pass: ["application/json"],
                      json_decoder: Poison
   plug :dispatch
+
+  # sub router forwarding
+
+  forward "/admin", to: ExTest.AdminRouter
 
   # pattern matching
 
@@ -29,13 +33,11 @@ defmodule ExTest.Router do
     |> send_resp(200, string)
   end
 
-  post "j" do
+  post "/j" do
     %{"derp" => value} = body = conn.body_params
     IO.inspect body
-    send_resp(conn, 200, body["derp"])
+    send_resp(conn, 200, value)
   end
-
- #forward "/users", to: UsersRouter
 
   match _ do
     send_resp(conn, 404, "unavailable")
