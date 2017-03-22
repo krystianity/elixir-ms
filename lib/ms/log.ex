@@ -1,6 +1,7 @@
 defmodule MSBase.Log do
 
   alias MSBase.Registry
+  alias MSBase.AccessLog
 
   def init(level, service_name, json_enabled) do
 
@@ -17,15 +18,15 @@ defmodule MSBase.Log do
       "json": json_enabled
     })
 
-    {:ok}
+    :ok
   end
 
-  def get_options() do
+  defp get_options() do
     {:ok, options} = Registry.get("log-options")
     options
   end
 
-  def get_value_for_level(level) do
+  defp get_value_for_level(level) do
     case level do
       "TRACE" ->
         10
@@ -44,11 +45,11 @@ defmodule MSBase.Log do
     end
   end
 
-  def get_iso_time do
+  defp get_iso_time do
     DateTime.to_iso8601 DateTime.utc_now()
   end
 
-  def get_json_log_msg(msg, level, options) do
+  defp get_json_log_msg(msg, level, options, corr_id) do
 
     {:ok, string} = Poison.encode(%MSBase.LogMsg{
         msg: msg,
@@ -58,13 +59,14 @@ defmodule MSBase.Log do
         pid: options.pid,
         current_color: options.color,
         service: options.service,
-        host: options.host
+        host: options.host,
+        "correlation-id": corr_id
     })
 
     string
   end
 
-  def get_plain_log_msg(msg, level) do
+  defp get_plain_log_msg(msg, level) do
     {:ok, string} = Poison.encode(msg)
     Enum.join([
         get_iso_time(),
@@ -74,11 +76,11 @@ defmodule MSBase.Log do
     ], " ")
   end
 
-  def write_log(msg, level, color) do
+  defp write_log(msg, level, color) when is_binary(level) do
     options = get_options()
 
     string = if options.json do
-      get_json_log_msg(msg, level, options)
+      get_json_log_msg(msg, level, options, nil)
     else
       get_plain_log_msg(msg, level)
     end
@@ -86,8 +88,25 @@ defmodule MSBase.Log do
     [color, string]
     |> Bunt.puts
 
-    {:ok}
+    :ok
   end
+
+  defp write_log(msg, level, color, conn) when is_binary(level) do
+      options = get_options()
+
+      corr_id = AccessLog.read_correlation_id(conn)
+
+      string = if options.json do
+        get_json_log_msg(msg, level, options, corr_id)
+      else
+        get_plain_log_msg(msg, level)
+      end
+
+      [color, string]
+      |> Bunt.puts
+
+      :ok
+    end
 
   def trace(msg) do
     write_log(msg, "TRACE", :white)
@@ -111,6 +130,30 @@ defmodule MSBase.Log do
 
   def fatal(msg) do
     write_log(msg, "FATAL", :darkmagenta)
+  end
+
+  def trace(msg, conn) do
+    write_log(msg, "TRACE", :white, conn)
+  end
+
+  def debug(msg, conn) do
+     write_log(msg, "DEBUG", :aqua, conn)
+  end
+
+  def info(msg, conn) do
+     write_log(msg, "INFO", :green, conn)
+  end
+
+  def warn(msg, conn) do
+    write_log(msg, "WARN", :yellow, conn)
+  end
+
+  def error(msg, conn) do
+    write_log(msg, "ERROR", :red, conn)
+  end
+
+  def fatal(msg, conn) do
+    write_log(msg, "FATAL", :darkmagenta, conn)
   end
 
 end

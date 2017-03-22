@@ -2,13 +2,17 @@ defmodule MSBase.Registry do
     use GenServer
 
   def start_link do
-    GenServer.start_link(__MODULE__, %{}, name: :registry)
+    GenServer.start_link(__MODULE__, nil, name: :registry)
   end
 
+  # "client-side" code
+
+  # call awaits a return
   def get(key) when is_bitstring(key) do
     GenServer.call(:registry, {:lookup, key})
   end
 
+  # cast is fire & forget
   def set(key, value) when is_bitstring(key) do
     GenServer.cast(:registry, {:create, key, value})
   end
@@ -17,20 +21,29 @@ defmodule MSBase.Registry do
     GenServer.call(:registry, {:all})
   end
 
-  def init do
-    {:ok, %{}}
+  # "server-side" code
+
+  # init is synchronous
+  def init(_) do
+    initState = %{}
+    {:ok, initState}
   end
 
-  def handle_call({:lookup, key}, _from, stored) do
-    {:reply, Map.fetch(stored, key), stored}
+  def handle_call({:lookup, key}, _from, state) do
+    {:reply, Map.fetch(state, key), state}
   end
 
-  def handle_call({:all}, _from, stored) do
-    {:reply, stored, stored}
+  def handle_call({:all}, _from, state) do
+    {:reply, state, state}
   end
 
-  def handle_cast({:create, key, value}, stored) do
-      stored = Map.put(stored, key, value)
-      {:noreply, stored}
+  # map is immutable, Map.put will create new map
+  # :noreply is sent back to genserver
+
+  # newState is passed via genserver
+
+  def handle_cast({:create, key, value}, state) do
+      newState = Map.put(state, key, value)
+      {:noreply, newState}
   end
 end

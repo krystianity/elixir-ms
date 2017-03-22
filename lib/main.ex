@@ -3,6 +3,8 @@ defmodule ExTest do
 
     alias MSBase.Log
 
+    # see mix.exs (defp applications)
+
   def start(_type, _args) do
     #IO.puts "starting supervisor"
     link_res = ExTest.Supervisor.start_link

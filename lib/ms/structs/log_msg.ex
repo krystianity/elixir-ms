@@ -10,6 +10,7 @@ defmodule MSBase.LogMsg do
     application_type: "service",
     service: "",
     current_color: "",
-    msg: ""
+    msg: "",
+    "correlation-id": ""
   ]
 end

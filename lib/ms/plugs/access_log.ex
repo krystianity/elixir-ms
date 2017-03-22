@@ -17,25 +17,25 @@ defmodule MSBase.AccessLog do
         diff = System.convert_time_unit(stop - start, :native, :micro_seconds)
 
         status = Integer.to_string(conn.status)
-        fdiff = Enum.join(formatted_diff(diff), " ")
+        formatted_diff = Enum.join(formatted_diff(diff), " ")
 
-        get_json_log(conn, status, fdiff)
+        get_json_log(conn, status, formatted_diff)
         |> write_log
 
       conn
     end)
   end
 
-  def get_iso_time do
+  defp get_iso_time do
     DateTime.to_iso8601 DateTime.utc_now()
   end
 
   def read_correlation_id(conn) do
-    {_, value} = List.keyfind(conn.req_headers,"correlation-id",0)
-    value
+    #{_, value} = List.keyfind(conn.req_headers,"correlation-id",0)
+    List.first Plug.Conn.get_req_header(conn, "correlation-id")
   end
 
-  def get_json_log(conn, status, response_time) do
+  defp get_json_log(conn, status, response_time) do
     {:ok, string} = Poison.encode(%MSBase.AccessLogMsg{
         status: status,
         response_time: response_time,
@@ -49,7 +49,7 @@ defmodule MSBase.AccessLog do
     string
   end
 
-  def write_log(string) do
+  defp write_log(string) do
     IO.puts string
     {:ok}
   end

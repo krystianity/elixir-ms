@@ -6,4 +6,4 @@ use Mix.Config
 
         log_level: "info",
         service_name: "ex-test",
-        json_enabled: false
+        json_enabled: true

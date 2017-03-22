@@ -1,6 +1,8 @@
 defmodule ExTest.Router do
     use Plug.Router
 
+    alias MSBase.Log
+
   # plug pipeline
 
   plug MSBase.AccessLog
@@ -18,6 +20,9 @@ defmodule ExTest.Router do
   # pattern matching
 
   get "/" do
+
+    Log.debug("someone called index", conn)
+
     conn
     |> put_resp_content_type("text/plain")
     |> send_resp(200, "ExTest")
