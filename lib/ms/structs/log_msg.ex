@@ -11,6 +11,8 @@ defmodule MSBase.LogMsg do
     service: "",
     current_color: "",
     msg: "",
-    "correlation-id": ""
+    "correlation-id": "",
+    beam_pid: "",
+    node: ""
   ]
 end

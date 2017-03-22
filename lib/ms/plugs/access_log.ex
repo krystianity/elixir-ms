@@ -44,7 +44,9 @@ defmodule MSBase.AccessLog do
         uri: "/" <> Enum.join(conn.path_info, "/"),
         query_string: conn.query_string,
         "@timestamp": get_iso_time(),
-        "correlation-id": read_correlation_id(conn)
+        "correlation-id": read_correlation_id(conn),
+        beam_pid: "#{:erlang.pid_to_list(self())}",
+        node: "#{node()}"
     })
     string
   end

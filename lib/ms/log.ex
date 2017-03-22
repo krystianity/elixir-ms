@@ -60,7 +60,9 @@ defmodule MSBase.Log do
         current_color: options.color,
         service: options.service,
         host: options.host,
-        "correlation-id": corr_id
+        "correlation-id": corr_id,
+        beam_pid: "#{:erlang.pid_to_list(self())}",
+        node: "#{node()}"
     })
 
     string

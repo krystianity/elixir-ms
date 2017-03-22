@@ -18,6 +18,8 @@ defmodule MSBase.AccessLogMsg do
     current_color: "",
     remote_client_id: "",
     bytes_received: "0",
-    bytes_sent: "0"
+    bytes_sent: "0",
+    beam_pid: "",
+    node: ""
   ]
 end
