@@ -73,7 +73,7 @@ defmodule MSBase.Log do
     Enum.join([
         get_iso_time(),
         "-",
-        level,
+        level <> ":",
         string
     ], " ")
   end

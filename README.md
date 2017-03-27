@@ -14,6 +14,11 @@
 - `redis client` using redix
 - MIT License
 
+## ships a few demos for
+- `kafka consumer + producer` using kafka_ex
+- `redis pub/sub` using redix_pubsub
+- `cassandra client` using xandra
+
 ## requirements
 - Erlang/OTP >= 19
 - Elixir >= 1.3.0

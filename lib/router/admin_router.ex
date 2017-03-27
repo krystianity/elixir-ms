@@ -12,7 +12,8 @@ defmodule ExTest.AdminRouter do
 
     get "/health" do
       {:ok, string} = Poison.encode(%{
-          "status": "UP"
+          "status": "UP",
+          "kafka": ExTest.KafkaConsumer.get_stats()
       })
       conn
       |> put_resp_content_type("application/json")
