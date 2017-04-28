@@ -19,5 +19,4 @@ defmodule ExTest.MetricsRouter do
     match _ do
       send_resp(conn, 404, "unavailable")
     end
-
 end

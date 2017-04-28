@@ -1,6 +1,10 @@
 defmodule MSBase.Registry do
     use GenServer
 
+    @moduledoc """
+    Registry
+    """
+
   def start_link do
     GenServer.start_link(__MODULE__, nil, name: :registry)
   end
@@ -25,8 +29,8 @@ defmodule MSBase.Registry do
 
   # init is synchronous
   def init(_) do
-    initState = %{}
-    {:ok, initState}
+    init_state = %{}
+    {:ok, init_state}
   end
 
   def handle_call({:lookup, key}, _from, state) do
@@ -43,7 +47,7 @@ defmodule MSBase.Registry do
   # newState is passed via genserver
 
   def handle_cast({:create, key, value}, state) do
-      newState = Map.put(state, key, value)
-      {:noreply, newState}
+      new_state = Map.put(state, key, value)
+      {:noreply, new_state}
   end
 end

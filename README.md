@@ -3,6 +3,7 @@
 - building a new microservice skeleton from scratch once again
 
 ## comes with
+- `credo` for static analysis
 - strong `http server` basis using plug + cowboy
 - fast `json` encode/decode using poison
 - `http client` using httpoison
@@ -11,7 +12,7 @@
 - (json) `access log` provided as Plug
 - ELK compliant `logger` with simple API
 - registry (in-memory cache) with simple API
-- `redis client` using redix
+- `redis client` using redix (pub-sub)
 - MIT License
 
 ## ships a few demos for

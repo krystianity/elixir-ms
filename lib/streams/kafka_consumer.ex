@@ -14,6 +14,10 @@ end
 defmodule ExTest.KafkaConsumer do
   use KafkaConsumer.EventHandler
 
+     @moduledoc """
+     A Kafka Consumer Demo
+     """
+
   alias MSBase.Log
 
   def handle_call({topic, partition, message}, _from, state) do

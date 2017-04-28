@@ -37,10 +37,7 @@ defmodule ExTest.Demo do
   end
 
   defp run_kafka() do
-
     KafkaConsumer.get_partition_config("access-log")
-    |> IO.inspect
-
     :ok
   end
 

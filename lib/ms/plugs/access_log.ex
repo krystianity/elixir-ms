@@ -1,5 +1,9 @@
 defmodule MSBase.AccessLog do
 
+    @moduledoc """
+       Access Log
+    """
+
   alias Plug.Conn
   @behaviour Plug
 
@@ -19,7 +23,8 @@ defmodule MSBase.AccessLog do
         status = Integer.to_string(conn.status)
         formatted_diff = Enum.join(formatted_diff(diff), " ")
 
-        get_json_log(conn, status, formatted_diff)
+        conn
+        |> get_json_log(status, formatted_diff)
         |> write_log
 
       conn

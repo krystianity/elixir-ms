@@ -1,5 +1,9 @@
 defmodule MSBase.Log do
 
+    @moduledoc  """
+        Log
+    """
+
   alias MSBase.Registry
   alias MSBase.AccessLog
 

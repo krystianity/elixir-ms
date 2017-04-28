@@ -41,7 +41,7 @@ defmodule ExTest.Router do
 
   post "/j" do
     %{"derp" => value} = body = conn.body_params
-    IO.inspect body
+    #IO.inspect body
     send_resp(conn, 200, value)
   end
 

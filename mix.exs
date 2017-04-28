@@ -29,13 +29,14 @@ defmodule ExTest.Mixfile do
 
   defp deps do
     [
+        {:credo, "~> 0.7", only: [:dev, :test]}, #static analysis
         {:poison, "~> 3.1"}, # json parser
         {:httpoison, "~> 0.11"}, # http client
         #{:redix, "~> 0.5"}, # redis
         {:redix_pubsub, "~> 0.2.0"}, # redis pubsub actions (ships with redix)
         {:cowboy, "~> 1.1"}, # http server
         {:plug, "~> 1.3"}, # http server wrapper
-        {:bunt, "~> 0.1.0"}, # cli colors
+        {:bunt, "~> 0.2.0"}, # cli colors
         {:prometheus_ex, "~> 1.1.0"}, # metrics
         #{:kafka_ex, "~> 0.6.3"}, # kafka client
         {:kafka_consumer, "~> 1.2.0"}, # easier kafka consumer (ships with kafka_ex & poolboy)
