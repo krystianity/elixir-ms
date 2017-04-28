@@ -1,8 +1,8 @@
 defmodule MSBase.AccessLog do
 
-    @moduledoc """
-       Access Log
-    """
+  @moduledoc """
+  Access Log
+  """
 
   alias Plug.Conn
   @behaviour Plug
@@ -17,15 +17,15 @@ defmodule MSBase.AccessLog do
 
     Conn.register_before_send(conn, fn conn ->
 
-        stop = System.monotonic_time()
-        diff = System.convert_time_unit(stop - start, :native, :micro_seconds)
+      stop = System.monotonic_time()
+      diff = System.convert_time_unit(stop - start, :native, :micro_seconds)
 
-        status = Integer.to_string(conn.status)
-        formatted_diff = Enum.join(formatted_diff(diff), " ")
+      status = Integer.to_string(conn.status)
+      formatted_diff = Enum.join(formatted_diff(diff), " ")
 
-        conn
-        |> get_json_log(status, formatted_diff)
-        |> write_log
+      conn
+      |> get_json_log(status, formatted_diff)
+      |> write_log
 
       conn
     end)
@@ -36,7 +36,6 @@ defmodule MSBase.AccessLog do
   end
 
   def read_correlation_id(conn) do
-    #{_, value} = List.keyfind(conn.req_headers,"correlation-id",0)
     List.first Plug.Conn.get_req_header(conn, "correlation-id")
   end
 
@@ -53,6 +52,7 @@ defmodule MSBase.AccessLog do
         beam_pid: "#{:erlang.pid_to_list(self())}",
         node: "#{node()}"
     })
+
     string
   end
 

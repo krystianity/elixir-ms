@@ -28,7 +28,7 @@ defmodule ExTest.Demo do
 
   defp run_redis() do
 
-     channel = "ex-test-channel"
+    channel = "ex-test-channel"
     Redis.start_link(channel)
   end
 
