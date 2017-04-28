@@ -14,22 +14,22 @@ end
 defmodule ExTest.KafkaConsumer do
   use KafkaConsumer.EventHandler
 
-     @moduledoc """
-     A Kafka Consumer Demo
-     """
+  @moduledoc """
+  A Kafka Consumer Demo
+  """
 
   alias MSBase.Log
 
   def handle_call({topic, partition, message}, _from, state) do
 
     try do
-        Log.debug "kafka msg: #{topic}:#{partition} message: #{message.key}"
-        msg = Poison.decode!(message.value, as: %ExTest.KafkaMessage{})
-        Log.info msg.payload
-        :ok
+      Log.debug "kafka msg: #{topic}:#{partition} message: #{message.key}"
+      msg = Poison.decode!(message.value, as: %ExTest.KafkaMessage{})
+      Log.info msg.payload
+      :ok
     rescue
-        e in RuntimeError -> e
-        Log.error to_string(e)
+      e in RuntimeError -> e
+    Log.error to_string(e)
     end
 
     {:reply, :ok, state}
@@ -41,9 +41,9 @@ defmodule ExTest.KafkaConsumer do
   end
 
   def get_stats do
-      topic = Application.get_env(:ExTest, :kafka_topic)
-      get_stats topic
-    end
+    topic = Application.get_env(:ExTest, :kafka_topic)
+    get_stats topic
+  end
 
   # returns a list of all partition ids for a given topic
   def get_partition_list(topic) do

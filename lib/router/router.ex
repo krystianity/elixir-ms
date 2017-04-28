@@ -1,15 +1,15 @@
 defmodule ExTest.Router do
-    use Plug.Router
+  use Plug.Router
 
-    alias MSBase.Log
+  alias MSBase.Log
 
   # plug pipeline
 
   plug MSBase.AccessLog
   plug :match
   plug Plug.Parsers, parsers: [:json],
-                     pass: ["application/json"],
-                     json_decoder: Poison
+    pass: ["application/json"],
+    json_decoder: Poison
   plug :dispatch
 
   # sub router forwarding
@@ -30,10 +30,11 @@ defmodule ExTest.Router do
 
   get "/j" do
     {:ok, string} = Poison.encode(%ExTest.ResDto{
-        one: "eins",
-        two: "zwei",
-        three: "drei"
+      one: "eins",
+      two: "zwei",
+      three: "drei"
     })
+
     conn
     |> put_resp_content_type("application/json")
     |> send_resp(200, string)
