@@ -1,59 +1,36 @@
 defmodule ExTest.Redis do
+    use GenServer
 
-    alias MSBase.Registry
+    alias MSBase.Log
 
-    def init do
+     def start_link(channel) do
+        GenServer.start_link(__MODULE__, channel)
+      end
+
+    def init(channel) do
 
       host = Application.get_env(:ExTest, :redis_host)
       port = Application.get_env(:ExTest, :redis_port)
 
-      {:ok, connSub} = Redix.PubSub.start_link(host: host, port: port)
-      {:ok, connCom} = Redix.start_link(host: host, port: port)
-
-      Registry.set("conn-sub", connSub)
-      Registry.set("conn-com", connCom)
-
-      {:ok, connSub, connCom}
-    end
-
-    # subscribe to a redis channel
-    def subscribe(channel, cb) do
-      {:ok, conn} = Registry.get("conn-sub")
+      {:ok, conn} = Redix.PubSub.start_link(host: host, port: port)
 
       Redix.PubSub.subscribe(conn, channel, self())
 
-      # await subscription of channel
-      receive do
-        {:redix_pubsub, ^conn, :subscribed, %{channel: channel}} -> :ok
-      end
-
-      #receive messages
-      receive do
-        {:redix_pubsub, ^conn, :message, %{channel: channel}} = properties ->
-         cb.(properties)
-         properties
-      end # TODO build genserver to constantly reive messages
-
-     {:ok, conn}
+        # await subscription of channel
+        receive do
+          {:redix_pubsub, ^conn, :subscribed, %{channel: channel}} ->
+          Log.info("redis subscribed to channel #{channel}.")
+          {:ok, %{channel: channel}}
+          after
+          200 ->
+          Log.error("failed to subscribe to redis channel #{channel}.")
+          {:stop, "redis subscription failed"} # :stop is a convention here
+        end
     end
 
-    # unsubscribe to a redis channel
-    def unsubscribe(channel) do
-        {:ok, conn} = Registry.get("conn-sub")
-        Redix.PubSub.unsubscribe(conn, channel, self())
-    end
-
-    # publish a message on a redis channel
-    def publish(channel, message) do
-        {:ok, conn} = Registry.get("conn-com")
-        Redix.command!(conn, ["PUBLISH", channel, message])
-    end
-
-    def close() do
-      {:ok, connSub} = Registry.get("conn-sub")
-      {:ok, connCom} = Registry.get("conn-com")
-      Redix.PubSub.stop(connSub)
-      Redix.stop(connCom)
-    end
-
+    def handle_info({:redix_pubsub, _, :message, %{channel: channel, payload: payload}}, state) do
+        Log.debug("received redis message on channel #{channel} with payload #{payload}")
+        #do something here
+        {:noreply, state}
+     end
 end

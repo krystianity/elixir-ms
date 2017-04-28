@@ -16,10 +16,13 @@ defmodule ExTest.Mixfile do
     [
         mod: {ExTest, []},
         applications: [
-            :prometheus_ex, :httpoison,
-            :cowboy, :plug,
-            :kafka_consumer, :gproc,
-            :xandra
+            :prometheus_ex,
+            :httpoison,
+            :cowboy,
+            :plug,
+            #:kafka_consumer,
+            :gproc,
+            #:xandra
         ]
     ]
   end

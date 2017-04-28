@@ -30,14 +30,14 @@ use Mix.Config
         default_pool_size: 5,
         default_pool_max_overflow: 10,
         event_handlers: [
-            {
-                ExTest.KafkaConsumer,
-                [
-                    {"user-behaviour-tracking", 0}
-                ],
-                size: 5,
-                max_overflow: 5
-            }
+            #{
+                #ExTest.KafkaConsumer,
+                #[
+                #    {"access-log", 0}
+                #],
+                #size: 5,
+                #max_overflow: 5
+            #}
         ]
 
 env_config = Path.expand("#{Mix.env}.exs", __DIR__)
