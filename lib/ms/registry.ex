@@ -1,9 +1,9 @@
 defmodule MSBase.Registry do
-    use GenServer
+  use GenServer
 
-    @moduledoc """
-    Registry
-    """
+  @moduledoc """
+  Registry
+  """
 
   def start_link do
     GenServer.start_link(__MODULE__, nil, name: :registry)
@@ -47,7 +47,7 @@ defmodule MSBase.Registry do
   # newState is passed via genserver
 
   def handle_cast({:create, key, value}, state) do
-      new_state = Map.put(state, key, value)
-      {:noreply, new_state}
+    new_state = Map.put(state, key, value)
+    {:noreply, new_state}
   end
 end

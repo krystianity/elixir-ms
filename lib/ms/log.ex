@@ -1,8 +1,8 @@
 defmodule MSBase.Log do
 
-    @moduledoc  """
-        Log
-    """
+  @moduledoc  """
+  Log
+  """
 
   alias MSBase.Registry
   alias MSBase.AccessLog
@@ -75,10 +75,10 @@ defmodule MSBase.Log do
   defp get_plain_log_msg(msg, level) do
     {:ok, string} = Poison.encode(msg)
     Enum.join([
-        get_iso_time(),
-        "-",
-        level <> ":",
-        string
+      get_iso_time(),
+      "-",
+      level <> ":",
+      string
     ], " ")
   end
 
@@ -98,21 +98,21 @@ defmodule MSBase.Log do
   end
 
   defp write_log(msg, level, color, conn) when is_binary(level) do
-      options = get_options()
+    options = get_options()
 
-      corr_id = AccessLog.read_correlation_id(conn)
+    corr_id = AccessLog.read_correlation_id(conn)
 
-      string = if options.json do
-        get_json_log_msg(msg, level, options, corr_id)
-      else
-        get_plain_log_msg(msg, level)
-      end
-
-      [color, string]
-      |> Bunt.puts
-
-      :ok
+    string = if options.json do
+      get_json_log_msg(msg, level, options, corr_id)
+    else
+      get_plain_log_msg(msg, level)
     end
+
+    [color, string]
+    |> Bunt.puts
+
+    :ok
+  end
 
   def trace(msg) do
     write_log(msg, "TRACE", :white)
@@ -143,11 +143,11 @@ defmodule MSBase.Log do
   end
 
   def debug(msg, conn) do
-     write_log(msg, "DEBUG", :aqua, conn)
+    write_log(msg, "DEBUG", :aqua, conn)
   end
 
   def info(msg, conn) do
-     write_log(msg, "INFO", :green, conn)
+    write_log(msg, "INFO", :green, conn)
   end
 
   def warn(msg, conn) do

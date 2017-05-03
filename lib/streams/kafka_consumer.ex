@@ -14,22 +14,22 @@ end
 defmodule ExTest.KafkaConsumer do
   use KafkaConsumer.EventHandler
 
-     @moduledoc """
-     A Kafka Consumer Demo
-     """
+  @moduledoc """
+  A Kafka Consumer Demo
+  """
 
   alias MSBase.Log
 
   def handle_call({topic, partition, message}, _from, state) do
 
     try do
-        Log.debug "kafka msg: #{topic}:#{partition} message: #{message.key}"
-        msg = Poison.decode!(message.value, as: %ExTest.KafkaMessage{})
-        Log.info msg.payload
-        :ok
+      Log.debug "kafka msg: #{topic}:#{partition} message: #{message.key}"
+      msg = Poison.decode!(message.value, as: %ExTest.KafkaMessage{})
+      Log.info msg.payload
+      :ok
     rescue
-        e in RuntimeError -> e
-        Log.error to_string(e)
+      e in RuntimeError -> e
+    Log.error to_string(e)
     end
 
     {:reply, :ok, state}

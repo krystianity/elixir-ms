@@ -1,5 +1,5 @@
 defmodule ExTest do
-    use Application
+  use Application
 
   # see mix.exs (defp applications)
   def start(_type, _args) do
