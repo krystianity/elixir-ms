@@ -1,6 +1,6 @@
 use Mix.Config
 
-  config :ExTest,
+  config :ex_test,
 
     port: 8080,
 

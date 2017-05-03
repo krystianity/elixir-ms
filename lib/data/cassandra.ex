@@ -14,14 +14,14 @@ defmodule ExTest.Cassandra do
     {:ok, conn}
   end
 
-  def void_query(statement, _params) do
+  def void_query(statement, params) do
     {:ok, conn} = Registry.get "cassandra-conn"
-    {:ok, %Xandra.Void{}} = Xandra.execute(conn, statement, _params)
+    {:ok, %Xandra.Void{}} = Xandra.execute(conn, statement, params)
   end
 
-  def list_query(statement, _params) do
+  def list_query(statement, params) do
     {:ok, conn} = Registry.get "cassandra-conn"
-    {:ok, %Xandra.Page{}} = Xandra.execute(conn, statement, _params)
+    {:ok, %Xandra.Page{}} = Xandra.execute(conn, statement, params)
   end
 
   def prepare(statement) do
