@@ -29,5 +29,5 @@
 - run `mix deps.get` or `./tools/_get-dependencies.sh`
 - start via `./tools/_run.sh`
 
-## build/run in docker container
-- build + run via `./tools/_docker.sh`
+## build/run in docker container via docker-compose
+- (force) build + run via `docker-compose up --build`
