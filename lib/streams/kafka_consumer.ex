@@ -41,9 +41,9 @@ defmodule ExTest.KafkaConsumer do
   end
 
   def get_stats do
-    topic = Application.get_env(:ExTest, :kafka_topic)
-    get_stats topic
-  end
+      topic = Application.get_env(:ex_test, :kafka_topic)
+      get_stats topic
+    end
 
   # returns a list of all partition ids for a given topic
   def get_partition_list(topic) do

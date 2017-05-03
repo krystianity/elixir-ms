@@ -3,7 +3,7 @@ defmodule ExTest.Mixfile do
 
   def project do
     [
-      app: :ExTest,
+      app: :ex_test,
       version: "1.0.0",
       elixir: "~> 1.3",
       build_embedded: Mix.env == :prod,
@@ -29,7 +29,7 @@ defmodule ExTest.Mixfile do
 
   defp deps do
     [
-      {:credo, "~> 0.7", only: [:dev, :test]}, #static analysis
+      {:credo, "~> 0.7", only: [:dev, :test]}, # linting
       {:poison, "~> 3.1"}, # json parser
       {:httpoison, "~> 0.11"}, # http client
       #{:redix, "~> 0.5"}, # redis
@@ -40,7 +40,11 @@ defmodule ExTest.Mixfile do
       {:prometheus_ex, "~> 1.1.0"}, # metrics
       #{:kafka_ex, "~> 0.6.3"}, # kafka client
       {:kafka_consumer, "~> 1.2.0"}, # easier kafka consumer (ships with kafka_ex & poolboy)
-      {:xandra, "~> 0.5.0"} # cassandra driver
+      {:xandra, "~> 0.5.0"}, # cassandra driver
+      {:weave, "~> 1.0.0"}, # JIT config
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false}, # static analysis
+      {:postgrex, "~> 0.13.2"}, #postgres driver
+      {:ecto, "~> 2.1.0"}, #db orm
     ]
   end
 

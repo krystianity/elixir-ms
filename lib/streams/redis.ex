@@ -9,8 +9,8 @@ defmodule ExTest.Redis do
 
   def init(channel) do
 
-    host = Application.get_env(:ExTest, :redis_host)
-    port = Application.get_env(:ExTest, :redis_port)
+    host = Application.get_env(:ex_test, :redis_host)
+    port = Application.get_env(:ex_test, :redis_port)
 
     {:ok, conn} = Redix.PubSub.start_link(host: host, port: port)
 
