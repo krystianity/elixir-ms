@@ -29,7 +29,7 @@ defmodule ExTest.Mixfile do
 
   defp deps do
     [
-      {:credo, "~> 0.7", only: [:dev, :test]}, #static analysis
+      {:credo, "~> 0.7", only: [:dev, :test]}, # linting
       {:poison, "~> 3.1"}, # json parser
       {:httpoison, "~> 0.11"}, # http client
       #{:redix, "~> 0.5"}, # redis
@@ -41,7 +41,8 @@ defmodule ExTest.Mixfile do
       #{:kafka_ex, "~> 0.6.3"}, # kafka client
       {:kafka_consumer, "~> 1.2.0"}, # easier kafka consumer (ships with kafka_ex & poolboy)
       {:xandra, "~> 0.5.0"}, # cassandra driver
-      {:weave, "~> 1.0.0"} # JIT config
+      {:weave, "~> 1.0.0"}, # JIT config
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false} # static analysis
     ]
   end
 

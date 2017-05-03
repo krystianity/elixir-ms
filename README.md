@@ -3,7 +3,8 @@
 - building a new microservice skeleton from scratch once again
 
 ## comes with
-- `credo` for static analysis
+- `credo` for linting
+- `dialyxir` static analysis
 - strong `http server` basis using plug + cowboy
 - fast `json` encode/decode using poison
 - `http client` using httpoison
