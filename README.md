@@ -1,6 +1,8 @@
 # elixir-ms
 - elixir microservice base
-- building a new microservice skeleton from scratch once again
+- microservice skeleton from scratch aka "You dont need Phoenix"
+
+![Elixir-Logo](http://elixir-lang.org/images/logo/logo.png)
 
 ## comes with
 - `credo` for linting
@@ -27,19 +29,14 @@
 - example for tests
 - custom dockerfile base on alpine (no deps)
 
-## ships a few demos for
-- `kafka consumer + producer` using kafka_ex
-- `redis pub/sub` using redix_pubsub
-- `cassandra client` using xandra
-
 ## requirements
 - Erlang/OTP >= 19
 - Elixir >= 1.3.0
 
 ## installation
 - git clone this repo
-- run `mix deps.get` or `./tools/_get-dependencies.sh`
-- start via `./tools/_run.sh`
+- run `mix deps.get` or `./tools/get-dependencies.sh`
+- start via `mix run --no-halt` or `./tools/run.sh`
 
 ## build/run in docker container via docker-compose
-- (force) build + run via `docker-compose up --build`
+- build + run via `docker-compose up --build`
