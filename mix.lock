@@ -23,4 +23,5 @@
   "redix": {:hex, :redix, "0.5.2", "82a7b3cf9141a8d3de7d38d321717fe7ae6f998561cd87d374ff9012db87913a", [:mix], [{:connection, "~> 1.0", [hex: :connection, optional: false]}]},
   "redix_pubsub": {:hex, :redix_pubsub, "0.2.0", "c42660d538698ca0b6a3bd671fac42e948402cdc3223e53db875891dd5446497", [:mix], [{:connection, "~> 1.0", [hex: :connection, optional: false]}, {:redix, "~> 0.5.0", [hex: :redix, optional: false]}]},
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.1", "28a4d65b7f59893bc2c7de786dec1e1555bd742d336043fe644ae956c3497fbe", [:make, :rebar], []},
+  "weave": {:hex, :weave, "1.0.0", "5a8b8c0a49e05e782f701685c0a71eb7b5addd24cd2efc10e1547c8d4cda1df9", [:mix], []},
   "xandra": {:hex, :xandra, "0.5.1", "17c3f2f2b89dd417a9014233fda7345f138ff0ff0ebb893ee33f9d2dea449b96", [:mix], [{:db_connection, "~> 1.0", [hex: :db_connection, optional: false]}]}}

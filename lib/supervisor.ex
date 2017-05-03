@@ -11,7 +11,7 @@ defmodule ExTest.Supervisor do
 
     children = [
       Plug.Adapters.Cowboy.child_spec(:http, ExTest.Router, [], [
-          port: Application.get_env(:ExTest, :port)
+          port: Application.get_env(:ex_test, :port)
       ]),
       worker(Registry, [])
     ]

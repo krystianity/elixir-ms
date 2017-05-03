@@ -1,6 +1,6 @@
 use Mix.Config
 
-    config :ExTest,
+    config :ex_test,
 
         port: 8080,
 
@@ -8,7 +8,7 @@ use Mix.Config
         service_name: "ex-test",
         json_enabled: false,
 
-        kafka_topic: "user-behaviour-tracking",
+        kafka_topic: "access-log",
 
         cassandra_host: "127.0.0.1",
         cassandra_port: 9042,
@@ -39,6 +39,11 @@ use Mix.Config
                 #max_overflow: 5
             #}
         ]
+
+    config :weave,
+      #file_directory: "path/to/secrets",
+      environment_prefix: "EXMS_",
+      handler: Config.Handler
 
 env_config = Path.expand("#{Mix.env}.exs", __DIR__)
 if File.exists?(env_config) do

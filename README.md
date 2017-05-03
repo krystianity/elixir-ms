@@ -13,7 +13,17 @@
 - ELK compliant `logger` with simple API
 - registry (in-memory cache) with simple API
 - `redis client` using redix (pub-sub)
+- `JIT Config` via weave
 - MIT License
+
+## TODO (coming up)
+- (asciify) banner
+- uuid v4 generation
+- cassandra client to GenServer
+- httppoison wrapper similar to request.js
+- ecto as ORM
+- example for tests
+- custom dockerfile base on alpine (no deps)
 
 ## ships a few demos for
 - `kafka consumer + producer` using kafka_ex

@@ -3,7 +3,7 @@ defmodule ExTest.Mixfile do
 
   def project do
     [
-        app: :ExTest,
+        app: :ex_test,
         version: "1.0.0",
         elixir: "~> 1.3",
         build_embedded: Mix.env == :prod,
@@ -40,7 +40,8 @@ defmodule ExTest.Mixfile do
         {:prometheus_ex, "~> 1.1.0"}, # metrics
         #{:kafka_ex, "~> 0.6.3"}, # kafka client
         {:kafka_consumer, "~> 1.2.0"}, # easier kafka consumer (ships with kafka_ex & poolboy)
-        {:xandra, "~> 0.5.0"} # cassandra driver
+        {:xandra, "~> 0.5.0"}, # cassandra driver
+        {:weave, "~> 1.0.0"} # JIT config
     ]
   end
 

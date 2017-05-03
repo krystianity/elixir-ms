@@ -2,10 +2,12 @@ defmodule ExTest.Cassandra do
 
   alias MSBase.Registry
 
+  # TODO wrap in a GenServer
+
   def init do
     {:ok, conn} = Xandra.start_link(
-        host: Application.get_env(:ExTest, :cassandra_host),
-        port: Application.get_env(:ExTest, :cassandra_port)
+        host: Application.get_env(:ex_test, :cassandra_host),
+        port: Application.get_env(:ex_test, :cassandra_port)
     )
 
     Registry.set("cassandra-conn", conn)
