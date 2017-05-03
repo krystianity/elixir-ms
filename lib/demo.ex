@@ -4,6 +4,7 @@ defmodule ExTest.Demo do
   alias ExTest.Redis
   alias ExTest.Cassandra
   alias ExTest.KafkaConsumer
+  alias ExTest.Ecto
 
   def run() do
 
@@ -12,6 +13,7 @@ defmodule ExTest.Demo do
     run_redis()
     #run_kafka()
     #run_cassandra()
+    run_ecto()
 
     :ok
   end
@@ -43,6 +45,10 @@ defmodule ExTest.Demo do
   defp run_kafka() do
     KafkaConsumer.get_partition_config("access-log")
     :ok
+  end
+
+  defp run_ecto() do
+    Ecto.keyword_query()
   end
 
 end

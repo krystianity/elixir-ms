@@ -45,6 +45,13 @@ use Mix.Config
      environment_prefix: "EXMS_",
      handler: Config.Handler
 
+   config :ex_test, ecto_repos: [ExTest.Repos.Test]
+   config :ex_test, ExTest.Repos.Test,
+       adapter: Ecto.Adapters.Postgres,
+       database: "ex_test",
+       username: "postgres",
+       password: "postgres"
+
 env_config = Path.expand("#{Mix.env}.exs", __DIR__)
 if File.exists?(env_config) do
     import_config(env_config)

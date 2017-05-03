@@ -15,6 +15,7 @@
 - registry (in-memory cache) with simple API
 - `redis client` using redix (pub-sub)
 - `JIT Config` via weave
+- `RDBMS ORM` via ecto and postgrex
 - MIT License
 
 ## TODO (coming up)
@@ -22,7 +23,7 @@
 - uuid v4 generation
 - cassandra client to GenServer
 - httppoison wrapper similar to request.js
-- ecto as ORM
+- ecto migrations
 - example for tests
 - custom dockerfile base on alpine (no deps)
 

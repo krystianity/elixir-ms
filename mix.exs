@@ -42,7 +42,9 @@ defmodule ExTest.Mixfile do
       {:kafka_consumer, "~> 1.2.0"}, # easier kafka consumer (ships with kafka_ex & poolboy)
       {:xandra, "~> 0.5.0"}, # cassandra driver
       {:weave, "~> 1.0.0"}, # JIT config
-      {:dialyxir, "~> 0.5", only: [:dev], runtime: false} # static analysis
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false}, # static analysis
+      {:postgrex, "~> 0.13.2"}, #postgres driver
+      {:ecto, "~> 2.1.0"}, #db orm
     ]
   end
 
