@@ -1,10 +1,10 @@
-# elixir-ms
-- elixir microservice base
-- microservice skeleton from scratch aka "You dont need Phoenix"
-
 ![Elixir-Logo](http://elixir-lang.org/images/logo/logo.png)
 
-## comes with
+# elixir-ms
+- elixir microservice base :ant::zap:
+- microservice skeleton from scratch aka "You dont need Phoenix"
+
+## Ingredients :star:
 - `credo` for linting
 - `dialyxir` static analysis
 - strong `http server` basis using plug + cowboy
@@ -29,14 +29,24 @@
 - example for tests
 - custom dockerfile base on alpine (no deps)
 
-## requirements
+## Requirements
 - Erlang/OTP >= 19
 - Elixir >= 1.3.0
 
-## installation
-- git clone this repo
+## Installation
+- install Erlang
+- install Elixir
+- install Mix
+- http://elixir-lang.org/install.html#unix-and-unix-like
+- `git clone git@github.com:krystianity/elixir-ms.git`
 - run `mix deps.get` or `./tools/get-dependencies.sh`
 - start via `mix run --no-halt` or `./tools/run.sh`
 
-## build/run in docker container via docker-compose
-- build + run via `docker-compose up --build`
+## Use as docker container via docker-compose
+build + run via `docker-compose up --build`
+
+## Testing
+run `mix test`
+
+## License
+MIT
