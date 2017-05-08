@@ -6,5 +6,6 @@ defmodule ExTest.Schemas.Test do
         field :bla, :string
         field :id_again, :integer
         field :blup, :float, default: 0.0
+        field :mach_doch, :integer
     end
 end
