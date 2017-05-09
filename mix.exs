@@ -8,7 +8,8 @@ defmodule ExTest.Mixfile do
       elixir: "~> 1.3",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
-      deps: deps()
+      deps: deps(),
+      aliases: aliases()
     ]
   end
 
@@ -24,6 +25,12 @@ defmodule ExTest.Mixfile do
         :gproc,
         #:xandra
       ]
+    ]
+  end
+
+  defp aliases do
+    [
+      start: ["clean", "compile", "run --no-halt"]
     ]
   end
 
