@@ -21,6 +21,7 @@ defmodule ExTest.Mixfile do
         :httpoison,
         :cowboy,
         :plug,
+        :postgrex,
         #:kafka_consumer,
         :gproc,
         #:xandra
