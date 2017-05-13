@@ -42,7 +42,9 @@
 - http://elixir-lang.org/install.html#unix-and-unix-like
 - `git clone git@github.com:krystianity/elixir-ms.git`
 - run `mix deps.get` or `./tools/get-dependencies.sh`
-- start via `mix run --no-halt` or `./tools/run.sh`
+- start via `mix start`
+- (if you want to run this as is, you need a local postgres (see Other below) and
+a redis, otherwise you have to make adjustments to lib/demo.ex and mix.exs)
 
 ## Use as docker container via docker-compose
 build + run via `docker-compose up --build`
@@ -56,8 +58,12 @@ MIT
 ## Other
 
 ### Database Setup
-- `docker run -it --rm --link postgres:postgres postgres:9.3 createdb -h postgres -U postgres ex_test`
-- `docker run -it --rm --link postgres:postgres postgres:9.3 psql -h postgres -U postgres ex_test`
-- `mix ecto.gen.migration add_test_table -r ExTest.Repos.Test`
+- (requires a local postgres, with a user named "postgres" and a password "postgres"
+checkout config/config.exs to change these credentials
+- `mix ecto.create`
 - `mix ecto.migrate`
+
+### Other Database Stuff
+- `mix ecto.gen.migration add_test_table -r ExTest.Repos.Test`
 - `mix ecto.rollback`
+- `docker run -it --rm --link postgres:postgres postgres:9.3 psql -h postgres -U postgres ex_test`
