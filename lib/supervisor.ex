@@ -14,7 +14,7 @@ defmodule ExTest.Supervisor do
         port: Application.get_env(:ex_test, :port)
       ]),
       worker(Registry, []),
-      worker(ExTest.Repos.Test, [])
+      supervisor(ExTest.Repos.Test, [])
     ]
 
     # a worker is a (erlang) process that has no other children

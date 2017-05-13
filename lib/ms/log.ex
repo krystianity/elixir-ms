@@ -100,7 +100,7 @@ defmodule MSBase.Log do
   defp write_log(msg, level, color, conn) when is_binary(level) do
     options = get_options()
 
-    corr_id = AccessLog.read_correlation_id(conn)
+    corr_id = AccessLog.get_correlation_id(conn)
 
     string = if options.json do
       get_json_log_msg(msg, level, options, corr_id)
