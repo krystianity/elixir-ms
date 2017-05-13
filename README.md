@@ -32,8 +32,8 @@
 - custom dockerfile base on alpine (no deps)
 
 ## Requirements
-- Erlang/OTP >= 19
-- Elixir >= 1.3.0
+- Erlang/OTP >= 19.3
+- Elixir >= 1.4.1
 
 ## Installation
 - install Erlang
