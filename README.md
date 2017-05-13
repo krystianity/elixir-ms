@@ -4,6 +4,8 @@
 - elixir microservice base :ant::zap:
 - microservice skeleton from scratch aka "You dont need Phoenix"
 
+[![Build Status](https://travis-ci.org/krystianity/elixir-ms.svg?branch=master)](https://travis-ci.org/krystianity/elixir-ms)
+
 ## Ingredients :star:
 - `credo` for linting
 - `dialyxir` static analysis
