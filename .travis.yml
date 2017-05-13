@@ -6,7 +6,9 @@ otp_release:
 services:
  - postgresql
  - redis
+env:
+ global:
+  - MIX_ENV=travis
 before_script:
- - cp config/config.exs.travis config/config.exs
  - mix ecto.create
- - mix eto.migrate
+ - mix ecto.migrate
