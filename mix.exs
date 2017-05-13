@@ -24,7 +24,8 @@ defmodule ExTest.Mixfile do
         :postgrex,
         #:kafka_consumer,
         :gproc,
-        #:xandra
+        #:xandra,
+        :postgrex
       ]
     ]
   end

@@ -16,6 +16,7 @@ defmodule ExTest.Router do
 
   forward "/admin", to: ExTest.AdminRouter
   forward "/metrics", to: ExTest.MetricsRouter
+  forward "/ecto", to: ExTest.EctoRouter
 
   # pattern matching
 

@@ -16,5 +16,13 @@ defmodule ExTest.Ecto do
         |> order_by(:id)
         |> limit(1)
         |> ExTest.Repos.Test.all
+        |> IO.inspect
+    end
+
+    def any_query do
+      query = from row in ExTest.Schemas.Test,
+       where: not is_nil(row.id),
+       select: row
+       ExTest.Repos.Test.all(query)
     end
 end
