@@ -13,7 +13,8 @@ defmodule ExTest.Supervisor do
       Plug.Adapters.Cowboy.child_spec(:http, ExTest.Router, [], [
         port: Application.get_env(:ex_test, :port)
       ]),
-      worker(Registry, [])
+      worker(Registry, []),
+      worker(ExTest.Repos.Test, [])
     ]
 
     # a worker is a (erlang) process that has no other children

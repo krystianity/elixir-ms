@@ -49,6 +49,7 @@ defmodule ExTest.Demo do
 
   defp run_ecto() do
     Ecto.keyword_query()
+    Ecto.pipe_query()
   end
 
 end

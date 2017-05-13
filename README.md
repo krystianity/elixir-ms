@@ -50,3 +50,12 @@ run `mix test`
 
 ## License
 MIT
+
+## Other
+
+### Database Setup
+- `docker run -it --rm --link postgres:postgres postgres:9.3 createdb -h postgres -U postgres ex_test`
+- `docker run -it --rm --link postgres:postgres postgres:9.3 psql -h postgres -U postgres ex_test`
+- `mix ecto.gen.migration add_test_table -r ExTest.Repos.Test`
+- `mix ecto.migrate`
+- `mix ecto.rollback`
