@@ -29,11 +29,11 @@ defmodule ExTest.Router do
     |> send_resp(200, "ExTest")
   end
 
-  get "/j" do
+  get "/example" do
     {:ok, string} = Poison.encode(%ExTest.ResDto{
-      one: "eins",
-      two: "zwei",
-      three: "drei"
+      a_string: "some text",
+      a_number: 123,
+      a_list: ["of", "items"]
     })
 
     conn
@@ -41,10 +41,13 @@ defmodule ExTest.Router do
     |> send_resp(200, string)
   end
 
-  post "/j" do
-    %{"derp" => value} = body = conn.body_params
-    #IO.inspect body
-    send_resp(conn, 200, value)
+  post "/example" do
+    case conn.body_params do
+      %{"accepted" => value} ->
+        send_resp(conn, 200, value)
+      _ ->
+        send_resp(conn, 400, "key 'accepted' not found in request body")
+    end
   end
 
   match _ do

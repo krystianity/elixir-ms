@@ -1,8 +1,8 @@
 defmodule ExTest.ResDto do
   @derive [Poison.Encoder]
   defstruct [
-    :one,
-    :two,
-    :three
+    :a_string,
+    :a_number,
+    :a_list
   ]
 end
