@@ -28,8 +28,8 @@ defmodule ExTest.KafkaConsumer do
       Log.info msg.payload
       :ok
     rescue
-      e in RuntimeError -> e
-    Log.error to_string(e)
+      e in RuntimeError ->
+        Log.error to_string(e)
     end
 
     {:reply, :ok, state}
