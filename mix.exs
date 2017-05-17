@@ -54,6 +54,7 @@ defmodule ExTest.Mixfile do
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false}, # static analysis
       {:postgrex, "~> 0.13.2"}, #postgres driver
       {:ecto, "~> 2.1.0"}, #db orm
+      { :uuid, "~> 1.1" },
     ]
   end
 

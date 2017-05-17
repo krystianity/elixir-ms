@@ -20,10 +20,10 @@
 - `redis client` using redix (pub-sub)
 - `JIT Config` via weave
 - `RDBMS ORM` via ecto and postgrex
+- start-up banner
 - MIT License
 
 ## TODO (coming up)
-- (asciify) banner
 - uuid v4 generation
 - cassandra client to GenServer
 - httppoison wrapper similar to request.js

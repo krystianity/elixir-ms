@@ -8,12 +8,15 @@ defmodule ExTest.Demo do
 
   def run() do
 
+    MsBase.BannerGen.read_banner()
+
     test_jit_config()
     run_logger()
     run_redis()
     #run_kafka()
     #run_cassandra()
     run_ecto()
+    run_uuid()
 
     :ok
   end
@@ -50,6 +53,10 @@ defmodule ExTest.Demo do
   defp run_ecto() do
     Ecto.keyword_query()
     Ecto.pipe_query()
+  end
+
+  defp run_uuid() do
+    UUID.uuid4() |> IO.puts
   end
 
 end

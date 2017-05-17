@@ -31,6 +31,7 @@ defmodule MSBase.AccessLogTest do
   test "logs request information and access log fields" do
     log_msg = run_conn("/product?id=123")
 
+    #TODO match against map
     assert log_msg.uri == "/product"
     assert log_msg.application_type == "service"
     assert log_msg.log_type == "access"
