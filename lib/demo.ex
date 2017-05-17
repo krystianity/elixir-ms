@@ -5,6 +5,7 @@ defmodule ExTest.Demo do
   alias ExTest.Cassandra
   alias ExTest.KafkaConsumer
   alias ExTest.Ecto
+  alias MsBase.Request
 
   def run() do
 
@@ -17,6 +18,7 @@ defmodule ExTest.Demo do
     #run_cassandra()
     run_ecto()
     run_uuid()
+    run_http_client()
 
     :ok
   end
@@ -57,6 +59,11 @@ defmodule ExTest.Demo do
 
   defp run_uuid() do
     UUID.uuid4() |> IO.puts
+  end
+
+  defp run_http_client() do
+     Request.start
+     IO.inspect Request.get!("/users/krystianity").body[:public_repos]
   end
 
 end

@@ -24,12 +24,8 @@
 - MIT License
 
 ## TODO (coming up)
-- uuid v4 generation
-- cassandra client to GenServer
-- httppoison wrapper similar to request.js
-- ecto migrations
-- example for tests
-- custom dockerfile base on alpine (no deps)
+- cassandra client to GenServer (Holger)
+- custom dockerfile base on alpine (no deps) (Elmar)
 
 ## Requirements
 - Erlang/OTP >= 19.3
