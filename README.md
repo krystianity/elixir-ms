@@ -23,10 +23,6 @@
 - start-up banner
 - MIT License
 
-## TODO (coming up)
-- cassandra client to GenServer (Holger)
-- custom dockerfile base on alpine (no deps) (Elmar)
-
 ## Requirements
 - Erlang/OTP >= 19.3
 - Elixir >= 1.4.1
