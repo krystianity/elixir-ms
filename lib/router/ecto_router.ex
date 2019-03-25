@@ -20,7 +20,7 @@ defmodule ExTest.EctoRouter do
     IO.inspect result
 
     {:ok, string} = Poison.encode(%{
-        "result": result
+        result: result
     })
 
     conn

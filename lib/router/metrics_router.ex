@@ -1,7 +1,7 @@
 defmodule ExTest.MetricsRouter do
   use Plug.Router
 
-  require Prometheus.Format.Text
+  # require Prometheus.Format.Text
 
   plug :match
   plug :dispatch
@@ -10,10 +10,10 @@ defmodule ExTest.MetricsRouter do
   # for custom metrics
 
   get "/" do
-    format = Prometheus.Format.Text.format(:default)
+    # format = Prometheus.Format.Text.format(:default)
     conn
     |> put_resp_content_type("text/plain")
-    |> send_resp(200, format)
+    |> send_resp(200, "prometheus_ex broken in elixir 1.8")
   end
 
   match _ do

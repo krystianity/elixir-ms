@@ -44,11 +44,11 @@ defmodule MSBase.AccessLogTest do
   end
 
   test "logs the timestamp" do
-    unix_time_start = DateTime.utc_now() |> DateTime.to_unix(:micro_seconds)
+    unix_time_start = DateTime.utc_now() |> DateTime.to_unix(:micro_econd)
     log_msg = run_conn("/")
 
     {:ok, time_log, _} = DateTime.from_iso8601(log_msg."@timestamp")
-    unix_time_log = time_log |> DateTime.to_unix(:micro_seconds)
+    unix_time_log = time_log |> DateTime.to_unix(:microsecond)
     diff = unix_time_log - unix_time_start
 
     assert_in_delta(diff, 1, 10000)

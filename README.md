@@ -24,14 +24,14 @@
 - MIT License
 
 ## Requirements
-- Erlang/OTP >= 19.3
-- Elixir >= 1.4.1
+- Erlang/OTP >= 21
+- Elixir >= 1.8.1
 
 ## Installation
 - install Erlang
 - install Elixir
 - install Mix
-- http://elixir-lang.org/install.html#unix-and-unix-like
+- http://elixir-lang.org/install.html#unix-and-unix-like // on mac simply `brew install elixir`
 - `git clone git@github.com:krystianity/elixir-ms.git`
 - run `mix deps.get` or `./tools/get-dependencies.sh`
 - start via `mix start`

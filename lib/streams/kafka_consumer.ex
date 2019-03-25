@@ -20,6 +20,10 @@ defmodule ExTest.KafkaConsumer do
 
   alias MSBase.Log
 
+  def init(init_arg) do
+    {:ok, init_arg}
+  end
+
   def handle_call({topic, partition, message}, _from, state) do
 
     try do

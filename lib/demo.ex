@@ -2,8 +2,8 @@ defmodule ExTest.Demo do
 
   alias MSBase.Log
   alias ExTest.Redis
-  alias ExTest.Cassandra
-  alias ExTest.KafkaConsumer
+  # alias ExTest.Cassandra
+  # alias ExTest.KafkaConsumer
   alias ExTest.Ecto
   alias MsBase.Request
 
@@ -43,14 +43,14 @@ defmodule ExTest.Demo do
     Redis.start_link(channel)
   end
 
-  defp run_cassandra() do
-    Cassandra.init()
-  end
+  # defp run_cassandra() do
+  #   Cassandra.init(nil)
+  # end
 
-  defp run_kafka() do
-    KafkaConsumer.get_partition_config("access-log")
-    :ok
-  end
+  # defp run_kafka() do
+  #  KafkaConsumer.get_partition_config("access-log")
+  #  :ok
+  # end
 
   defp run_ecto() do
     Ecto.keyword_query()

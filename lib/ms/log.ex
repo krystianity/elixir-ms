@@ -14,12 +14,12 @@ defmodule MSBase.Log do
     pid = System.get_pid()
 
     Registry.set("log-options", %{
-      "level": level,
-      "service": service_name,
-      "host": List.to_string(hostname),
-      "pid": pid,
-      "color": color,
-      "json": json_enabled
+      level: level,
+      service: service_name,
+      host: List.to_string(hostname),
+      pid: pid,
+      color: color,
+      json: json_enabled
     })
 
     :ok

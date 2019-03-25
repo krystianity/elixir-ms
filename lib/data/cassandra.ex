@@ -9,7 +9,7 @@ defmodule ExTest.Cassandra do
     Registry.set(@process_key, pid)
   end
 
-  def init() do
+  def init(_init_arg) do
     {:ok, conn} = Xandra.start_link(
         host: Application.get_env(:ex_test, :cassandra_host),
         port: Application.get_env(:ex_test, :cassandra_port)
